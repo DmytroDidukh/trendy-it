@@ -7,7 +7,7 @@ const productSchema = new Schema({
     price: Number,
     images: [Object],
     sale: Boolean,
-    new: Boolean,
+    newItem: Boolean,
     toSlider: Boolean,
     createdAt: { type: Date, default: Date.now },
 });

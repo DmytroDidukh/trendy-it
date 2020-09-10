@@ -10,7 +10,7 @@ type Product {
     description: String
     images: [ImageSet]
     sale: Boolean
-    new: Boolean
+    newItem: Boolean
     toSlider: Boolean
     createdAt: Date
 }
@@ -21,7 +21,7 @@ input ProductInput {
     oldPrice: Float
     description: String!
     sale: Boolean
-    new: Boolean
+    newItem: Boolean
     toSlider: Boolean
     images: [ImageSetInput]
 }
