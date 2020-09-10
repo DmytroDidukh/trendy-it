@@ -1,10 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {Form, Button} from 'react-bootstrap';
-import BootstrapSwitchButton from 'bootstrap-switch-button-react'
+import {Form, Button, Badge} from 'react-bootstrap';
 
 import {addProduct, updateProduct} from "../../../redux/product/product.actions";
-import {PRODUCT_DEFAULT, IMAGE_DEFAULT, COLORS_DEFAULT, COLORS_HEX} from '../../../config'
+import {PRODUCT_DEFAULT, IMAGE_DEFAULT, COLOR_DEFAULT, COLORS_DATA} from '../../../config'
 
 import './style.scss';
 
@@ -16,15 +15,15 @@ const ProductRedactor = ({redactorState}) => {
 
     const [id, setId] = useState('');
     const [images, setImages] = useState([IMAGE_DEFAULT]);
-    const [colors, setColors] = useState([COLORS_DEFAULT]);
+    const [colors, setColors] = useState([COLOR_DEFAULT]);
     const [productObj, setProductObj] = useState(PRODUCT_DEFAULT)
 
     useEffect(() => {
         if (product) {
             const {price, oldPrice, name, description, id, images, colors, sale, available, newItem, toSlider} = product
-
+            console.log(product)
             setId(id);
-            setProductObj({price, oldPrice, name, description, images, available, sale, newItem, toSlider});
+            setProductObj({price, oldPrice, name, description, available, sale, newItem, toSlider});
             setImages(images.map(img => ({link: img.link})));
             setColors(colors.map(color => ({type: color.type})));
         } else {
@@ -44,6 +43,10 @@ const ProductRedactor = ({redactorState}) => {
        setProductObj({...productObj, [target.id]: target.checked})
     }
 
+    const onColorChange = ({target}) => {
+        setColors([...colors, {type: target.id}]);
+    }
+
     const onImageInputChange = (idx, e) => {
         const values = [...images];
         values[idx].link = e.target.value;
@@ -59,8 +62,8 @@ const ProductRedactor = ({redactorState}) => {
     const onSaveProduct = () => {
         if (productObj.name && productObj.price) {
             dispatch(redactorState === 'add' ?
-                addProduct({...productObj, images}) :
-                updateProduct({id, product: {...productObj, images}}))
+                addProduct({...productObj, images, colors}) :
+                updateProduct({id, product: {...productObj, images, colors}}))
             onResetInputs();
         } else {
             window.alert('Всі поля з "*" повинні бути заповнені!')
@@ -78,12 +81,17 @@ const ProductRedactor = ({redactorState}) => {
             <Form>
                 <div className='prodcut-redactor-flex'>
                     <div className='prodcut-redactor-flex-left'>
-                        <BootstrapSwitchButton
-                            checked={productObj.available || false}
-                            onlabel='В наявності'
-                            offlabel='Немає в наявності'
-                            onChange={onCheckboxChange}
-                        />
+
+                        <div className='product-available' style={{background: productObj.available ? '#28a745' : '#dc3545'}}>
+                            <Form.Group id="formGridCheckbox">
+                            <Form.Check type="checkbox"
+                                        label={productObj.available ? 'Так' : 'Ні'}
+                                        id='available'
+                                        checked={productObj.available || false}
+                                        onChange={onCheckboxChange}/>
+                        </Form.Group>
+                        </div>
+
                         <Form.Group>
                             <Form.Label>*Назва продукту:</Form.Label>
                             <Form.Control
@@ -169,6 +177,20 @@ const ProductRedactor = ({redactorState}) => {
                             <div className="addImageInput-btn">
                                 <Button variant="outline-dark"
                                     onClick={onAddImageInput}>Додати зображення</Button>
+                            </div>
+
+                            <div className="product-colors">
+                                <h6>Наявні кольори:</h6>
+                                {productObj.name && COLORS_DATA.map((color, i) => (
+                                <Form.Group id="formGridCheckbox" key={i}>
+                                    <span style={{background: color.hex}}/>
+                                    <Form.Check type="checkbox"
+                                                label={color.name}
+                                                id={color.type}
+                                                checked={colors.find(item => item.type === color.type) || false}
+                                                onChange={onColorChange}/>
+                                </Form.Group>
+                            ))}
                             </div>
 
                         </Form.Group>

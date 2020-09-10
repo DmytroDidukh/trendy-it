@@ -28,4 +28,5 @@ input ProductInput {
     newItem: Boolean
     toSlider: Boolean
     images: [ImageSetInput]
+    colors: [ColorsInput]
 }

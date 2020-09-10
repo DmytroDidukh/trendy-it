@@ -38,32 +38,22 @@ export const IMAGE_DEFAULT = {
     link: ''
 };
 
-export const COLORS_DEFAULT = [
-    {black: false},
-    {silver: false},
-    {white: false},
-    {blue: false},
-    {yellow: false},
-    {orange: false},
-    {red: false},
-    {green: false},
-    {pink: false},
-    {purple: false},
-    {brown: false},
-];
+export const COLOR_DEFAULT = {
+    type: ''
+};
 
-export const COLORS_HEX = [
-    {black: '#000000'},
-    {silver: '#949494'},
-    {white: '#ffffff'},
-    {blue: '#00308c'},
-    {yellow: '#eeca07'},
-    {orange: '#ee4807'},
-    {red: '#ff0000'},
-    {green: '#2eae1c'},
-    {pink: '#e607ee'},
-    {purple: '#5800fc'},
-    {brown: '#692e19'},
+export const COLORS_DATA = [
+    {hex: '#000000', name: 'Чорний', type: 'black'},
+    {hex: '#949494', name: 'Сірий', type: 'silver'},
+    {hex: '#ffffff', name: 'Бійли', type: 'white'},
+    {hex: '#00308c', name: 'Синій', type: 'blue'},
+    {hex: '#eeca07', name: 'Жовтий', type: 'yellow'},
+    {hex: '#ee4807', name: 'Оранджевий', type: 'orange'},
+    {hex: '#ff0000', name: 'Червоний', type: 'red'},
+    {hex: '#2eae1c', name: 'Зелений', type: 'green'},
+    {hex: '#e607ee', name: 'Рожейвий', type: 'pink'},
+    {hex: '#5800fc', name: 'Фіолетовий', type: 'purple'},
+    {hex: '#692e19', name: 'Коричневий', type: 'brown'},
 ];
 
 export const ORDER_STATUSES = {
