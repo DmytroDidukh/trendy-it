@@ -9,19 +9,11 @@ import './style.scss';
 const List = ({ items, isLoading, onEditItem, onDeleteItem }) => {
 
     const ItemContent = ({ item }) => {
-        const { name, __typename } = item;
+        const { name} = item;
 
         return (
             <div className='list-item-content'>
-                <div className='list-item-content-name' >{name}</div>
-                {
-                    __typename === 'Subcategory' &&
-                    <div className='list-item-content-subName'>{item.category.name}</div>
-                }
-                {
-                    __typename === 'Product' &&
-                    <div className='list-item-content-subName'>{item.subcategory && item.subcategory.name}, {item.category && item.category.name}</div>
-                }
+                <div className='list-item-content-name' >{name || item.title}</div>
                 <div className='list-item-content-buttons'>
                     <Button variant="outline-warning" onClick={() => onEditItem(item)}>Редагувати</Button>
                     <Button variant="outline-danger" onClick={() => onDeleteItem(item)}>Видалити</Button>

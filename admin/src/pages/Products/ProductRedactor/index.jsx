@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Form, Button} from 'react-bootstrap';
+import BootstrapSwitchButton from 'bootstrap-switch-button-react'
 
 import {addProduct, updateProduct} from "../../../redux/product/product.actions";
+import {PRODUCT_DEFAULT, IMAGE_DEFAULT, COLORS_DEFAULT, COLORS_HEX} from '../../../config'
 
 import './style.scss';
 
@@ -12,20 +14,19 @@ const ProductRedactor = ({redactorState}) => {
         product: Products.product
     }));
 
-    const productDefault = {name: '', price: 0, oldPrice: 0, description: '', newItem: false, sale: false, toSlider: false};
-    const imageDefault = {link: ''};
-
-
     const [id, setId] = useState('');
-    const [images, setImages] = useState([imageDefault]);
-    const [productObj, setProductObj] = useState(productDefault)
+    const [images, setImages] = useState([IMAGE_DEFAULT]);
+    const [colors, setColors] = useState([COLORS_DEFAULT]);
+    const [productObj, setProductObj] = useState(PRODUCT_DEFAULT)
 
     useEffect(() => {
         if (product) {
-            const {price, oldPrice, name, description, id, images, sale, newItem, toSlider} = product
-           setId(id);
-            setProductObj({price, oldPrice, name, description, images, sale, newItem, toSlider});
+            const {price, oldPrice, name, description, id, images, colors, sale, available, newItem, toSlider} = product
+
+            setId(id);
+            setProductObj({price, oldPrice, name, description, images, available, sale, newItem, toSlider});
             setImages(images.map(img => ({link: img.link})));
+            setColors(colors.map(color => ({type: color.type})));
         } else {
             onResetInputs()
         }
@@ -40,7 +41,6 @@ const ProductRedactor = ({redactorState}) => {
     }
 
     const onCheckboxChange = ({target}) => {
-        console.log(target.checked)
        setProductObj({...productObj, [target.id]: target.checked})
     }
 
@@ -52,7 +52,7 @@ const ProductRedactor = ({redactorState}) => {
 
     const onAddImageInput = () => {
         const newArr = [...images]
-        newArr.push(imageDefault);
+        newArr.push(IMAGE_DEFAULT);
         setImages(newArr);
     }
 
@@ -69,8 +69,8 @@ const ProductRedactor = ({redactorState}) => {
 
     const onResetInputs = () => {
         setId('');
-        setImages([imageDefault])
-        setProductObj(productDefault)
+        setImages([IMAGE_DEFAULT])
+        setProductObj(PRODUCT_DEFAULT)
     }
 
     return (
@@ -78,6 +78,12 @@ const ProductRedactor = ({redactorState}) => {
             <Form>
                 <div className='prodcut-redactor-flex'>
                     <div className='prodcut-redactor-flex-left'>
+                        <BootstrapSwitchButton
+                            checked={productObj.available || false}
+                            onlabel='В наявності'
+                            offlabel='Немає в наявності'
+                            onChange={onCheckboxChange}
+                        />
                         <Form.Group>
                             <Form.Label>*Назва продукту:</Form.Label>
                             <Form.Control

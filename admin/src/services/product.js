@@ -15,9 +15,13 @@ client.query({
                 images {
                     link
                 },
+                colors {
+                    type
+                }
+                available
                 sale
                 newItem
-                toSlider
+                toSlider                
                 createdAt
             }
         }
