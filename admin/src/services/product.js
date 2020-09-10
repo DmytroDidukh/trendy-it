@@ -17,6 +17,7 @@ client.query({
                 },
                 sale
                 newItem
+                toSlider
                 createdAt
             }
         }
@@ -41,6 +42,7 @@ const addProduct = async (product) => {
                     },
                     sale
                     newItem
+                    toSlider
                     createdAt
                 }
             }
@@ -68,6 +70,7 @@ const updateProduct = async ({id, product}) => {
                     },
                     sale
                     newItem
+                    toSlider
                     createdAt
                 }
             }

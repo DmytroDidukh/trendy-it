@@ -23,9 +23,8 @@ const ProductRedactor = ({redactorState}) => {
     useEffect(() => {
         if (product) {
             const {price, oldPrice, name, description, id, images, sale, newItem, toSlider} = product
-
-            setId(id);
-            setProductObj({price, oldPrice, name, description, id, images, sale, newItem, toSlider});
+           setId(id);
+            setProductObj({price, oldPrice, name, description, images, sale, newItem, toSlider});
             setImages(images.map(img => ({link: img.link})));
         } else {
             onResetInputs()
@@ -146,6 +145,7 @@ const ProductRedactor = ({redactorState}) => {
 
                         </Form.Group>
                     </div>
+
                     <div className='prodcut-redactor-flex-right'>
                         <Form.Group>
                             <Form.Label>Посилання на зоображення:</Form.Label>
