@@ -44,7 +44,14 @@ const ProductRedactor = ({redactorState}) => {
     }
 
     const onColorChange = ({target}) => {
-        setColors([...colors, {type: target.id}]);
+        const color = colors.find( color => color.type === target.id)
+
+        if (!color) {
+            setColors([...colors, {type: target.id}]);
+        } else {
+            const newColors = colors.filter(color => color.type !== target.id)
+            setColors([...newColors])
+        }
     }
 
     const onImageInputChange = (idx, e) => {

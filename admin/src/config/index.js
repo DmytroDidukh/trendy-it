@@ -45,7 +45,7 @@ export const COLOR_DEFAULT = {
 export const COLORS_DATA = [
     {hex: '#000000', name: 'Чорний', type: 'black'},
     {hex: '#949494', name: 'Сірий', type: 'silver'},
-    {hex: '#ffffff', name: 'Бійли', type: 'white'},
+    {hex: '#ffffff', name: 'Білий', type: 'white'},
     {hex: '#00308c', name: 'Синій', type: 'blue'},
     {hex: '#eeca07', name: 'Жовтий', type: 'yellow'},
     {hex: '#ee4807', name: 'Оранджевий', type: 'orange'},
