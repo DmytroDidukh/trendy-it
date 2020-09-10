@@ -68,3 +68,10 @@ export const MENU_ITEMS = [
     {name: 'Баннери', link: '/banners', color: '#d03d03'},
     {name: 'Налаштування', link: '/settings', color: '#212529'},
 ]
+
+export const PRODUCT_FILTER_OPTIONS = [
+    {name: 'В наявності', status: 'available'},
+    {name: 'Хіт продаж', status: 'hot'},
+    {name: 'Новинки', status: 'newItem'},
+    {name: 'Розпродаж', status: 'sale'}
+]

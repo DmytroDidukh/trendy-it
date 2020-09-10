@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {Form, Button, Badge} from 'react-bootstrap';
+import {Form, Button} from 'react-bootstrap';
 
 import {addProduct, updateProduct} from "../../../redux/product/product.actions";
 import {PRODUCT_DEFAULT, IMAGE_DEFAULT, COLOR_DEFAULT, COLORS_DATA} from '../../../config'
@@ -20,10 +20,9 @@ const ProductRedactor = ({redactorState}) => {
 
     useEffect(() => {
         if (product) {
-            const {price, oldPrice, name, description, id, images, colors, sale, available, newItem, toSlider} = product
-            console.log(product)
+            const {price, oldPrice, name, description, id, images, colors, sale, hot, available, newItem, toSlider} = product
             setId(id);
-            setProductObj({price, oldPrice, name, description, available, sale, newItem, toSlider});
+            setProductObj({price, oldPrice, name, description, available, sale, hot, newItem, toSlider});
             setImages(images.map(img => ({link: img.link})));
             setColors(colors.map(color => ({type: color.type})));
         } else {
@@ -80,6 +79,7 @@ const ProductRedactor = ({redactorState}) => {
     const onResetInputs = () => {
         setId('');
         setImages([IMAGE_DEFAULT])
+        setColors([COLOR_DEFAULT])
         setProductObj(PRODUCT_DEFAULT)
     }
 
@@ -120,15 +120,7 @@ const ProductRedactor = ({redactorState}) => {
 
                         <Form.Group id="formGridCheckbox">
                             <Form.Check type="checkbox"
-                                        label="Новинка"
-                                        id='newItem'
-                                        checked={productObj.newItem || false}
-                                        onChange={onCheckboxChange}/>
-                        </Form.Group>
-
-                        <Form.Group id="formGridCheckbox">
-                            <Form.Check type="checkbox"
-                                        label="Розпродаж"
+                                        label="Розпродаж &#129297;"
                                         id='sale'
                                         checked={productObj.sale || false}
                                         onChange={onCheckboxChange}/>
@@ -143,6 +135,22 @@ const ProductRedactor = ({redactorState}) => {
                                 value={productObj.oldPrice || 0}
                                 onChange={onInputChange}/>
                         </Form.Group>}
+
+                        <Form.Group id="formGridCheckbox">
+                            <Form.Check type="checkbox"
+                                        label="Хіт продаж &#128293;"
+                                        id='hot'
+                                        checked={productObj.hot || false}
+                                        onChange={onCheckboxChange}/>
+                        </Form.Group>
+
+                        <Form.Group id="formGridCheckbox">
+                            <Form.Check type="checkbox"
+                                        label="Новинка"
+                                        id='newItem'
+                                        checked={productObj.newItem || false}
+                                        onChange={onCheckboxChange}/>
+                        </Form.Group>
 
                         <Form.Group id="formGridCheckbox">
                             <Form.Check type="checkbox"
@@ -188,7 +196,7 @@ const ProductRedactor = ({redactorState}) => {
 
                             <div className="product-colors">
                                 <h6>Наявні кольори:</h6>
-                                {productObj.name && COLORS_DATA.map((color, i) => (
+                                {(productObj.name || redactorState) && COLORS_DATA.map((color, i) => (
                                 <Form.Group id="formGridCheckbox" key={i}>
                                     <span style={{background: color.hex}}/>
                                     <Form.Check type="checkbox"

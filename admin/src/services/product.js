@@ -20,6 +20,7 @@ client.query({
                 }
                 available
                 sale
+                hot
                 newItem
                 toSlider                
                 createdAt

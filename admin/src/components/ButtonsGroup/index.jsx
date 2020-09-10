@@ -3,7 +3,7 @@ import {ButtonGroup, Button} from 'react-bootstrap';
 
 import './style.scss';
 
-const ButtonsGroup = ({items, onChange}) => {
+const ButtonsGroup = ({items, onChange, options}) => {
     const [radioValue, setRadioValue] = useState('all');
     const onSelected = (e) => {
         onChange(e);
