@@ -6,6 +6,8 @@ const productSchema = new Schema({
     oldPrice: Number,
     price: Number,
     images: [Object],
+    colors: [Object],
+    available: Boolean,
     sale: Boolean,
     newItem: Boolean,
     toSlider: Boolean,
