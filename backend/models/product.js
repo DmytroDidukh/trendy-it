@@ -8,6 +8,7 @@ const productSchema = new Schema({
     images: [Object],
     colors: [Object],
     available: Boolean,
+    hot: Boolean,
     sale: Boolean,
     newItem: Boolean,
     toSlider: Boolean,

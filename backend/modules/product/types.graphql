@@ -13,6 +13,7 @@ type Product {
     colors: [Colors]
     available: Boolean
     sale: Boolean
+    hot: Boolean
     newItem: Boolean
     toSlider: Boolean
     createdAt: Date
@@ -25,6 +26,7 @@ input ProductInput {
     description: String!
     available: Boolean
     sale: Boolean
+    hot: Boolean
     newItem: Boolean
     toSlider: Boolean
     images: [ImageSetInput]
