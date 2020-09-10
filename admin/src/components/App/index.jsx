@@ -21,9 +21,9 @@ const App = () => {
         dispatch(checkUserByToken());
 
         if (isAuth) {
-            dispatch(getBanners());
+            //dispatch(getBanners());
             dispatch(getProducts());
-            dispatch(getOrders());
+            //dispatch(getOrders());
         }
     }, [dispatch, isAuth])
 

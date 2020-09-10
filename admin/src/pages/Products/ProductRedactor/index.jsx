@@ -2,60 +2,31 @@ import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Form, Button} from 'react-bootstrap';
 
-import DropdownBar from '../../../components/DropdownBar'
 import {addProduct, updateProduct} from "../../../redux/product/product.actions";
-import Sizes from "../ProductSizes";
 
 import './style.scss';
 
 const ProductRedactor = ({redactorState}) => {
     const dispatch = useDispatch()
-    const {subcategories, categories, product} = useSelector(({Subcategories, Categories, Products}) => ({
-        subcategories: Subcategories.list,
-        categories: Categories.list,
+    const { product} = useSelector(({ Products}) => ({
         product: Products.product
     }));
 
-    const productDefault = {name: '', price: 0, description: ''};
-    const sizesDefault = {xs: 0, s: 0, m: 0, l: 0, xl: 0, xxl: 0, oneSize: 0};
+    const productDefault = {name: '', price: 0, oldPrice: 0, description: '', newItem: false, sale: false, toSlider: false};
     const imageDefault = {link: ''};
 
 
     const [id, setId] = useState('');
-    const [categoryId, setCategoryId] = useState('');
-    const [subcategoryId, setSubcategoryId] = useState('');
-    const [categoryDropdownBarValue, setCategoryDropdownBarValue] = useState(null);
-    const [subcategoryDropdownBarValue, setSubcategoryDropdownBarValue] = useState(null);
     const [images, setImages] = useState([imageDefault]);
-    const [sizes, setSizes] = useState(sizesDefault);
     const [productObj, setProductObj] = useState(productDefault)
-
-    const onSelectCategoryDropdownBarItem = (key, e) => {
-        setCategoryId(e.target.dataset.id)
-        setCategoryDropdownBarValue(e.target.innerText)
-        setSubcategoryDropdownBarValue(null)
-    }
-    const onSelectSubcategoryDropdownBarItem = (key, e) => {
-        setSubcategoryId(e.target.dataset.id)
-        setSubcategoryDropdownBarValue(e.target.innerText)
-    }
 
     useEffect(() => {
         if (product) {
-            const {price, name, description, id, subcategory, category, images} = product
-            const sizes = Object.entries(product.sizes)
+            const {price, oldPrice, name, description, id, images, sale, newItem, toSlider} = product
 
             setId(id);
-            setProductObj({price, name, description});
+            setProductObj({price, oldPrice, name, description, id, images, sale, newItem, toSlider});
             setImages(images.map(img => ({link: img.link})));
-            setCategoryId(category.id)
-            setSubcategoryId(subcategory.id)
-
-            setCategoryDropdownBarValue(category.name);
-            setSubcategoryDropdownBarValue(subcategory.name);
-
-            sizes.pop()
-            setSizes(Object.fromEntries(sizes))
         } else {
             onResetInputs()
         }
@@ -67,6 +38,11 @@ const ProductRedactor = ({redactorState}) => {
 
         newObj[e.target.name] = value
         setProductObj(newObj)
+    }
+
+    const onCheckboxChange = ({target}) => {
+        console.log(target.checked)
+       setProductObj({...productObj, [target.id]: target.checked})
     }
 
     const onImageInputChange = (idx, e) => {
@@ -82,11 +58,10 @@ const ProductRedactor = ({redactorState}) => {
     }
 
     const onSaveProduct = () => {
-        console.log(sizes)
-        if (productObj.name && categoryId && subcategoryId) {
+        if (productObj.name && productObj.price) {
             dispatch(redactorState === 'add' ?
-                addProduct({...productObj, sizes, images, categoryId, subcategoryId}) :
-                updateProduct({id, product: {...productObj, sizes, images, categoryId, subcategoryId}}))
+                addProduct({...productObj, images}) :
+                updateProduct({id, product: {...productObj, images}}))
             onResetInputs();
         } else {
             window.alert('Всі поля з "*" повинні бути заповнені!')
@@ -97,9 +72,6 @@ const ProductRedactor = ({redactorState}) => {
         setId('');
         setImages([imageDefault])
         setProductObj(productDefault)
-        setSizes(sizesDefault)
-        setCategoryDropdownBarValue(null);
-        setSubcategoryDropdownBarValue(null);
     }
 
     return (
@@ -120,30 +92,46 @@ const ProductRedactor = ({redactorState}) => {
                             <Form.Label>*Ціна:</Form.Label>
                             <Form.Control
                                 name='price'
-                                type="text"
+                                type="number"
                                 placeholder="Введіть ціну продукту"
                                 value={productObj.price || 0}
                                 onChange={onInputChange}/>
                         </Form.Group>
 
-                        <Form.Group >
-                            <Form.Label>*Категорія:</Form.Label>
-                            <br/>
-                            <DropdownBar
-                                items={categories}
-                                selectedValue={categoryDropdownBarValue}
-                                setSelectedValue={onSelectCategoryDropdownBarItem}
-                            />
+                        <Form.Group id="formGridCheckbox">
+                            <Form.Check type="checkbox"
+                                        label="Новинка"
+                                        id='newItem'
+                                        checked={productObj.newItem || false}
+                                        onChange={onCheckboxChange}/>
                         </Form.Group>
-                        <Form.Group >
-                            <Form.Label>*Підкатегорія:</Form.Label>
-                            <br/>
-                            <DropdownBar
-                                items={subcategories.filter(item => item.category.id === categoryId)}
-                                selectedValue={subcategoryDropdownBarValue}
-                                setSelectedValue={onSelectSubcategoryDropdownBarItem}
-                            />
+
+                        <Form.Group id="formGridCheckbox">
+                            <Form.Check type="checkbox"
+                                        label="Розпродаж"
+                                        id='sale'
+                                        checked={productObj.sale || false}
+                                        onChange={onCheckboxChange}/>
                         </Form.Group>
+
+                        {productObj.sale && <Form.Group>
+                            <Form.Label>Стара ціна:</Form.Label>
+                            <Form.Control
+                                name='oldPrice'
+                                type="number"
+                                placeholder="Введіть стару ціну продукту"
+                                value={productObj.oldPrice || 0}
+                                onChange={onInputChange}/>
+                        </Form.Group>}
+
+                        <Form.Group id="formGridCheckbox">
+                            <Form.Check type="checkbox"
+                                        label="Відобразити у на головній сторінці?"
+                                        id='toSlider'
+                                        checked={productObj.toSlider || false}
+                                        onChange={onCheckboxChange}/>
+                        </Form.Group>
+
                         <Form.Group >
                             <Form.Label>Опис продукту:</Form.Label>
                             <Form.Control
@@ -177,14 +165,6 @@ const ProductRedactor = ({redactorState}) => {
                                     onClick={onAddImageInput}>Додати зображення</Button>
                             </div>
 
-
-                        </Form.Group>
-                        <Form.Group>
-                            <Form.Label>Розміри:</Form.Label>
-                            <Sizes sizes={sizes}
-                                   setSizes={setSizes}
-
-                            />
                         </Form.Group>
                     </div>
 
