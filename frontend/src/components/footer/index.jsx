@@ -18,7 +18,7 @@ const Footer = () => {
                                         <div className="footer-list__item-social">
                                                 <a className='telegram' href="https://web.telegram.org/#/login"><Icon name='telegram' size='big' /></a>
                                                 <a className='viber' href="https://www.viber.com/ru/"><Icon name='viber' size='big' /></a>
-                                                <a className='instagram' href="https://www.instagram.com/dmytro.didukh/" ><Icon name='instagram' size='big' /></a>
+                                                <a className='instagram' href="https://www.instagram.com/trendy_it_bags/" ><Icon name='instagram' size='big' /></a>
                                         </div>
                                 </div>
                                 <div className="footer-list__item">

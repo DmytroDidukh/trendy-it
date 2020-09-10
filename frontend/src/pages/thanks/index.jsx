@@ -6,7 +6,7 @@ import './style.scss'
 const ThanksPage = () => {
     return (
         <div className='thanks-page'>
-            <h2 className='title'>Shkaff</h2>
+            <h2 className='title'>Trandy IT</h2>
             <h2>Дякуємо за покупку!</h2>
             <Link to='/'>
                 <button className='basic-button'>На головну</button>
