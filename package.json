@@ -1,0 +1,26 @@
+{
+  "name": "trandy-it",
+  "version": "1.0.0",
+  "description": "web shop",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "backend": "cd backend && npm start",
+    "frontend": "cd frontend && npm start",
+    "admin": "cd admin && npm start",
+    "dev": "concurrently \"npm run backend\" \"npm run frontend\" \"npm run admin\""
+  },
+  "keywords": [
+    "graphQL",
+    "nodeJS",
+    "reactJS",
+    "Redux",
+    "Saga",
+    "Express"
+  ],
+  "author": "DiVi Corp.",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^5.3.0"
+  }
+}

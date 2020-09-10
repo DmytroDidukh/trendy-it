@@ -1,0 +1,31 @@
+.navbar-expand .navbar-nav {
+  display: contents;
+}
+
+.nav-item {
+  font-size: 1.05em;
+  padding: 0 30px;
+
+  &.navbar-text:nth-child(3) {
+    margin-left: auto;
+    padding-right: 10px;
+  }
+
+  &:last-child {
+    color: rgba(255,255,255,.5);
+    cursor: pointer;
+    &:hover {
+      color: rgba(255,255,255,.75);
+    }
+  }
+}
+
+.nav-link {
+  text-decoration: none;
+}
+
+tbody {
+  tr {
+    text-align: center;
+  }
+}

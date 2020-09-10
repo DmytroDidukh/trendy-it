@@ -1,0 +1,27 @@
+#import "../common/imageSet.graphql"
+
+scalar Date
+
+type Product {
+    id: ID!
+    name: String
+    price: Float
+    oldPrice: Float
+    description: String
+    images: [ImageSet]
+    sale: Boolean
+    new: Boolean
+    toSlider: Boolean
+    createdAt: Date
+}
+
+input ProductInput {
+    name: String!
+    price: Float!
+    oldPrice: Float
+    description: String!
+    sale: Boolean
+    new: Boolean
+    toSlider: Boolean
+    images: [ImageSetInput]
+}
