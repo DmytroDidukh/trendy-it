@@ -21,7 +21,7 @@ const Slider = () => {
                         }}
                              className="slider__image"/>
                         <Carousel.Caption>
-                            <h3>{product.name}</h3>
+                            <h2>{product.name}</h2>
                             <Link to='/'>
                                 <Button variant='dark'>
                                     КУПИТИ {product.price} UAH
