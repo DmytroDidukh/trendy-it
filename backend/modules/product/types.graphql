@@ -1,4 +1,4 @@
-#import "../common/imageSet.graphql"
+#import "../common/images.graphql"
 #import "../common/colors.graphql"
 
 scalar Date
@@ -9,7 +9,7 @@ type Product {
     price: Float
     oldPrice: Float
     description: String
-    images: [ImageSet]
+    images: Images
     colors: [Colors]
     available: Boolean
     sale: Boolean
@@ -29,6 +29,6 @@ input ProductInput {
     hot: Boolean
     newItem: Boolean
     toSlider: Boolean
-    images: [ImageSetInput]
+    images: ImagesInput
     colors: [ColorsInput]
 }
