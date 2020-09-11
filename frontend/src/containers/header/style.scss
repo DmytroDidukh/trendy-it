@@ -9,13 +9,27 @@
   border-bottom: 1px solid rgb(247, 247, 247);
 
   &__logo {
-    font-size: 3rem;
-    color: #000000;
-    font-family: "Great Vibes", cursive;
-    font-weight: 400;
-    font-style: normal;
-    margin: 0;
+    a {
+      display: flex;
+      align-items: center;
+      img {
+        height: 30px;
+      }
+      h1 {
+        font-size: 1.5rem;
+        color: #000000;
+        font-family: "MarcellusSC", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        margin: 0;
+      }
+    }
+    }
+
+  &__catalog {
+    margin-left: 30px;
   }
+
 
   &__categories-list {
     display: flex;

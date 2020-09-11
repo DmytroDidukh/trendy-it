@@ -1,12 +1,14 @@
 import React from "react";
 import {Link} from 'react-router-dom'
 
+import {Banner} from "../../containers";
 import './style.scss'
 
-const ThanksPage = () => {
+const Home = () => {
     return (
         <div className='thanks-page'>
-            <h2 className='title'>Trendy IT</h2>
+            <Banner/>
+            <h2 className='title'>Trandy IT</h2>
             <h2>Дякуємо за покупку!</h2>
             <Link to='/'>
                 <button className='basic-button'>На головну</button>
@@ -15,4 +17,4 @@ const ThanksPage = () => {
     )
 }
 
-export default ThanksPage
+export default Home

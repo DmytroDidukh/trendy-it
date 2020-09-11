@@ -7,13 +7,17 @@ import './style.scss'
 const Header = () => {
     return (
         <div className='main-header'>
-            <Link to='/'>
-                <img src={'./images/logo'} alt={'Shop logo'}/>
-                <h1 className='main-header__logo'>Trendy IT</h1>
+            <div className='main-header__logo'>
+                <Link to='/'>
+                <img src={'./images/logo.png'} alt={'Shop logo'}/>
+                <h1>Trendy IT</h1>
             </Link>
-            <Link to='/'>
-                <h3 className='main-header__catalog'>Каталог</h3>
+            </div>
+            <div className='main-header__catalog'>
+                <Link to='/catalog'>
+                <h3 >Каталог</h3>
             </Link>
+            </div>
             <RightBar />
         </div>
     )
