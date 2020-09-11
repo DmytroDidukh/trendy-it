@@ -1,7 +1,6 @@
 .home {
-  min-height: 600px;
+  //min-height: calc(100vh - 178px);
   &__hero {
-    height: calc(100vh - 178px);
     display: grid;
     grid-template-columns: 1fr 450px;
     grid-gap: 10px;

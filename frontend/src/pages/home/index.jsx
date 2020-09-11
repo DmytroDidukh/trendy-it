@@ -1,7 +1,7 @@
 import React from "react";
 import {Link} from 'react-router-dom'
 
-import {Banners, Slider} from "../../containers";
+import {Banners, HotItems, Slider} from "../../containers";
 import './style.scss'
 
 const Home = () => {
@@ -11,6 +11,7 @@ const Home = () => {
                 <Slider/>
                 <Banners/>
             </div>
+            <HotItems/>
         </div>
     )
 }

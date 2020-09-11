@@ -23,6 +23,7 @@ client.query({
                 description
                 available
                 sale
+                hot
                 newItem
                 toSlider
                 createdAt
@@ -55,6 +56,7 @@ await client.query({
                 description
                 available
                 sale
+                hot
                 newItem
                 toSlider
                 createdAt
