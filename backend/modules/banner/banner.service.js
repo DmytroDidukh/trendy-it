@@ -5,8 +5,8 @@ class BannerService {
         return Banner.find();
     }
 
-    getBannerById(id) {
-        return Banner.findById(id);
+    getBannerByUsability() {
+        return Banner.find({toSlider: true});
     }
 
     addBanner(data) {

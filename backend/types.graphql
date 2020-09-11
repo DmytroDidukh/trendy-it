@@ -11,7 +11,7 @@ type Query {
     getUsers: [User!]!
     getUserByToken: User
     getBanners: [Banner!]!
-    getBannerById(id: ID!): Banner
+    getBannerByUsability: [Banner!]!
 }
 
 type Mutation {

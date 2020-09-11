@@ -2,7 +2,7 @@ import bannerService from './banner.service';
 
 const bannerQuery = {
     getBanners: () => bannerService.getBanners(),
-    getBannerById: (parent, args) => bannerService.getBannerById(args.id),
+    getBannerByUsability: () => bannerService.getBannerByUsability(),
 };
 
 const bannerMutation = {
