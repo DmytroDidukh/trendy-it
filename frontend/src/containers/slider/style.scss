@@ -1,5 +1,7 @@
 .slider {
+  min-height: 600px;
   &__image {
+    min-height: 600px;
     height: calc(100vh - 178px);
     background-size: cover;
   }

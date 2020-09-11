@@ -10,8 +10,6 @@ const Slider = () => {
         item.available && item.toSlider && item.newItem
     )))
 
-    console.log(sliderProducts)
-
     return (
         <Carousel className='slider'>
             {

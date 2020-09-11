@@ -2,11 +2,11 @@ import { gql } from 'apollo-boost'
 
 import client from "./index";
 
-export const getBanners = () =>
+export const getBannersByUsability = () =>
     client.query({
         query: gql`
             {
-                getBanners {
+                getBannerByUsability {
                     id
                     title
                     image
