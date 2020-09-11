@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {Form, Button} from 'react-bootstrap';
 
 import {addProduct, updateProduct} from "../../../redux/product/product.actions";
-import {PRODUCT_DEFAULT, IMAGE_DEFAULT, COLOR_DEFAULT, COLORS_DATA} from '../../../config'
+import {PRODUCT_DEFAULT, IMAGES_DEFAULT, COLOR_DEFAULT, COLORS_DATA} from '../../../config'
 
 import './style.scss';
 
@@ -14,7 +14,7 @@ const ProductRedactor = ({redactorState}) => {
     }));
 
     const [id, setId] = useState('');
-    const [images, setImages] = useState([IMAGE_DEFAULT]);
+    const [images, setImages] = useState({...IMAGES_DEFAULT});
     const [colors, setColors] = useState([COLOR_DEFAULT]);
     const [productObj, setProductObj] = useState(PRODUCT_DEFAULT)
 
@@ -24,7 +24,7 @@ const ProductRedactor = ({redactorState}) => {
 
             setId(id);
             setProductObj({price, oldPrice, name, description, available, sale, hot, newItem, toSlider});
-            setImages(images.map(img => ({link: img.link})));
+            setImages({slider: images.slider, product: images.product.map(img => ({link: img.link}))});
             setColors(colors.map(color => ({type: color.type})));
         } else {
             onResetInputs()
@@ -54,19 +54,25 @@ const ProductRedactor = ({redactorState}) => {
         }
     }
 
-    const onImageInputChange = (idx, e) => {
-        const values = [...images];
-        values[idx].link = e.target.value;
-        setImages(values);
+    const onImageInputChange = (e, idx) => {
+        if (e.target.name === 'slider-image') {
+            setImages({slider: e.target.value, product: images.product})
+        } else {
+            const values = [...images.product];
+
+            values[idx].link = e.target.value;
+            setImages({slider: images.slider, product: values});
+        }
     }
 
     const onAddImageInput = () => {
-        const newArr = [...images, {...IMAGE_DEFAULT}]
-        setImages(newArr);
+        const newArr = [...images.product, {link: ''}]
+        setImages({...images, product: newArr});
     }
 
     const onSaveProduct = () => {
         if (productObj.name && productObj.price) {
+            console.log(images)
             dispatch(redactorState === 'add' ?
                 addProduct({...productObj, images, colors}) :
                 updateProduct({id, product: {...productObj, images, colors}}))
@@ -78,7 +84,7 @@ const ProductRedactor = ({redactorState}) => {
 
     const onResetInputs = () => {
         setId('');
-        setImages([{...IMAGE_DEFAULT}])
+        setImages({slider: '', product: [{link: ''}]})
         setColors([COLOR_DEFAULT])
         setProductObj(PRODUCT_DEFAULT)
     }
@@ -160,6 +166,16 @@ const ProductRedactor = ({redactorState}) => {
                                         onChange={onCheckboxChange}/>
                         </Form.Group>
 
+                        {productObj.toSlider && <Form.Group>
+                            <Form.Label>Зображення на слайдер (широкоформатне):</Form.Label>
+                            <Form.Control
+                                name='slider-image'
+                                type="text"
+                                placeholder="Посилання на зображення"
+                                value={images.slider || ''}
+                                onChange={onImageInputChange}/>
+                        </Form.Group>}
+
                         <Form.Group >
                             <Form.Label>Опис продукту:</Form.Label>
                             <Form.Control
@@ -178,7 +194,7 @@ const ProductRedactor = ({redactorState}) => {
                     <div className='prodcut-redactor-flex-right'>
                         <Form.Group>
                             <Form.Label>Посилання на зоображення:</Form.Label>
-                            {images.map((img, idx) => {
+                            {images.product.map((img, idx) => {
                                 return (
                                     <Form.Control
                                         key={idx + img.link}
@@ -186,7 +202,7 @@ const ProductRedactor = ({redactorState}) => {
                                         type="textarea"
                                         placeholder="Введіть посилання на зоображення"
                                         value={img.link || ''}
-                                        onChange={e => onImageInputChange(idx, e)}/>
+                                        onChange={e => onImageInputChange(e, idx)}/>
                                 )
                             })}
                             <div className="addImageInput-btn">

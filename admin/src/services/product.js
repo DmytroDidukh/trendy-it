@@ -13,7 +13,10 @@ client.query({
                 price,
                 oldPrice,
                 images {
-                    link
+                    slider
+                    product {
+                        link
+                    }
                 },
                 colors {
                     type
@@ -43,7 +46,10 @@ const addProduct = async (product) => {
                     price,
                     oldPrice,
                     images {
-                        link
+                        slider
+                        product {
+                            link
+                        }
                     },
                     sale
                     newItem
@@ -71,7 +77,10 @@ const updateProduct = async ({id, product}) => {
                     price,
                     oldPrice,
                     images {
-                        link
+                        slider
+                        product {
+                            link
+                        }
                     },
                     sale
                     newItem
