@@ -10,7 +10,8 @@ type Query {
     getOrders: [Order!]!
     getUsers: [User!]!
     getUserByToken: User
-    getBanners: Banner
+    getBanners: [Banner!]!
+    getBannerByUsability: [Banner!]!
 }
 
 type Mutation {

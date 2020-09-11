@@ -1,0 +1,25 @@
+.banners {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &__item {
+    flex-basis: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding: 20px;
+    margin: 5px 0;
+  }
+
+  &__item:last-child {
+    margin-bottom: 0;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}

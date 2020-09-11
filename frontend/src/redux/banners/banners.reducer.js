@@ -1,24 +1,16 @@
 import {
-    SET_CATEGORY,
-    SET_CATEGORIES,
+    SET_BANNERS,
     SET_LOADING,
-} from './categories.types'
+} from './banners.types'
 
 const initialState = {
     list: [],
-    category: {},
     loading: false
 }
 
-const categoriesReducer = (state = initialState, { type, payload }) => {
+const bannersReducer = (state = initialState, {type, payload}) => {
     switch (type) {
-        case SET_CATEGORY: {
-            return {
-                ...state,
-                category: payload
-            }
-        }
-        case SET_CATEGORIES: {
+        case SET_BANNERS: {
             return {
                 ...state,
                 list: payload,
@@ -35,4 +27,4 @@ const categoriesReducer = (state = initialState, { type, payload }) => {
     }
 }
 
-export default categoriesReducer;
+export default bannersReducer;

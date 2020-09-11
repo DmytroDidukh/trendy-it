@@ -23,7 +23,7 @@ const App = () => {
         if (isAuth) {
             dispatch(getBanners());
             dispatch(getProducts());
-            dispatch(getOrders());
+            //dispatch(getOrders());
         }
     }, [dispatch, isAuth])
 

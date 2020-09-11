@@ -5,9 +5,15 @@ const productSchema = new Schema({
     description: String,
     oldPrice: Number,
     price: Number,
-    images: [Object],
+    images: {
+        slider: String,
+        product: [Object]
+    },
+    colors: [Object],
+    available: Boolean,
+    hot: Boolean,
     sale: Boolean,
-    new: Boolean,
+    newItem: Boolean,
     toSlider: Boolean,
     createdAt: { type: Date, default: Date.now },
 });

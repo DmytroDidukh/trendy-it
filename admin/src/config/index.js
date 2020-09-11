@@ -23,6 +23,42 @@ export const SNACKBAR_MESSAGES = {
     }
 }
 
+export const PRODUCT_DEFAULT = {
+    name: '',
+    price: 0,
+    oldPrice: 0,
+    description: '',
+    newItem: false,
+    sale: false,
+    available: false,
+    toSlider: false
+};
+
+export const IMAGES_DEFAULT = {
+    slider: '',
+    product: [
+        {link: ''}
+    ]
+};
+
+export const COLOR_DEFAULT = {
+    type: ''
+};
+
+export const COLORS_DATA = [
+    {hex: '#000000', name: 'Чорний', type: 'black'},
+    {hex: '#949494', name: 'Сірий', type: 'silver'},
+    {hex: '#ffffff', name: 'Білий', type: 'white'},
+    {hex: '#00308c', name: 'Синій', type: 'blue'},
+    {hex: '#eeca07', name: 'Жовтий', type: 'yellow'},
+    {hex: '#ee4807', name: 'Оранджевий', type: 'orange'},
+    {hex: '#ff0000', name: 'Червоний', type: 'red'},
+    {hex: '#2eae1c', name: 'Зелений', type: 'green'},
+    {hex: '#e607ee', name: 'Рожейвий', type: 'pink'},
+    {hex: '#5800fc', name: 'Фіолетовий', type: 'purple'},
+    {hex: '#692e19', name: 'Коричневий', type: 'brown'},
+];
+
 export const ORDER_STATUSES = {
     done: {name: 'Виконані', status: 'done'},
     processing: {name: 'Обробляються', status: 'processing'},
@@ -33,5 +69,12 @@ export const MENU_ITEMS = [
     {name: 'Продукція', link: '/products', color: '#52a360'},
     {name: 'Замовлення', link: '/orders', color: '#674794'},
     {name: 'Баннери', link: '/banners', color: '#d03d03'},
-    {name: 'Settings', link: '/settings', color: '#212529'},
+    {name: 'Налаштування', link: '/settings', color: '#212529'},
+]
+
+export const PRODUCT_FILTER_OPTIONS = [
+    {name: 'В наявності', status: 'available'},
+    {name: 'Хіт продаж', status: 'hot'},
+    {name: 'Новинки', status: 'newItem'},
+    {name: 'Розпродаж', status: 'sale'}
 ]

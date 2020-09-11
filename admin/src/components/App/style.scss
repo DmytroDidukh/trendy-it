@@ -7,12 +7,28 @@
   .page-list {
     padding: 50px;
     flex-basis: 45%;
+    &__control {
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      align-items: center;
+      margin-bottom: 10px;
+
+      > * {
+        margin-bottom: 0 !important;
+      }
+
+      .list-filter-buttons, input {
+        margin-left: 10px;
+        height: 38px;
+      }
+    }
   }
 
   .page-item {
     padding: 50px;
-    height: 100%;
     flex-basis: 55%;
+    min-height: 100%;
     background-color: #f8f8f8;
   }
 }

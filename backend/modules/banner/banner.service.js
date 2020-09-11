@@ -5,9 +5,13 @@ class BannerService {
         return Banner.find();
     }
 
+    getBannerByUsability() {
+        return Banner.find({toSlider: true});
+    }
+
     addBanner(data) {
-        const product = new Banner(data);
-        return product.save();
+        const banner = new Banner(data);
+        return banner.save();
     }
 
     updateBanner({id, banner}) {

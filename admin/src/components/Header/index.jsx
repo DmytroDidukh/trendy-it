@@ -28,7 +28,7 @@ const Header = () => {
                         <Navbar.Text className='nav-item' key={item.link}>
                             <Link className={`nav-link ${location === item.link && 'active'}`}
                                   to={`${item.link}`}>
-                                {i === 2 && userName ? userName : item.name}
+                                {i === 3 && userName ? userName : item.name}
                             </Link>
                         </Navbar.Text>
                     ))
