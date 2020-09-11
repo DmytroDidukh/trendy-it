@@ -6,26 +6,26 @@ import './style.scss'
 import {useSelector} from "react-redux";
 
 const Slider = () => {
-    const sliderProducts = useSelector(({Products}) => Products.list.filter( item => (
+    const sliderProducts = useSelector(({Products}) => Products.list.filter(item => (
         item.available && item.toSlider && item.newItem
     )))
+
+    console.log(sliderProducts)
 
     return (
         <Carousel className='slider'>
             {
                 sliderProducts.map(product => (
                     <Carousel.Item key={product.id}>
-                       {/* <div style={{background: `url(${product.images[0].link}) no-repeat center center`}} className="slider__image"/>*/}
-
-                        <img
-                            className="d-block w-100 slider__image"
-                            src={product.images[0].link}
-                            alt={`Bag ${product.name}`}
-                        />
+                        <div style={{
+                            background: `url(${product.images.slider}) no-repeat center center`,
+                            backgroundSize: 'cover'
+                        }}
+                             className="slider__image"/>
                         <Carousel.Caption>
                             <h3>{product.name}</h3>
                             <Link to='/'>
-                                <Button>
+                                <Button variant='dark'>
                                     КУПИТИ {product.price} UAH
                                 </Button>
                             </Link>

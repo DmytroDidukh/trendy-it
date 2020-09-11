@@ -10,7 +10,10 @@ client.query({
                 id
                 name
                 images {
-                    link
+                    slider
+                    product {
+                        link
+                    }
                 }
                 colors {
                     type
@@ -39,7 +42,10 @@ await client.query({
                 id
                 name
                 images {
-                    link
+                    slider
+                    product {
+                        link
+                    }
                 }
                 colors {
                     type
