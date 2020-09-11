@@ -7,9 +7,21 @@
   .page-list {
     padding: 50px;
     flex-basis: 45%;
-    .list-filter-buttons {
+    &__control {
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      align-items: center;
       margin-bottom: 10px;
-      margin-left: 10px;
+
+      > * {
+        margin-bottom: 0 !important;
+      }
+
+      .list-filter-buttons, input {
+        margin-left: 10px;
+        height: 38px;
+      }
     }
   }
 

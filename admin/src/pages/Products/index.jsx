@@ -65,11 +65,14 @@ const ProductsPage = () => {
     return (
         <div className='page-container'>
             <div className='page-list'>
-                <Button className='list-add-button'
-                        variant="primary"
-                        onClick={onAddProduct}> Додати +</Button>
-                <ButtonsGroup onChange={onFilterOptionChange} items={PRODUCT_FILTER_OPTIONS}/>
-                <input type='text' onChange={onFilterOptionChange} data-id='search-input'/>
+                <div className='page-list__control'>
+                    <Button className='list-add-button'
+                            variant="primary"
+                            onClick={onAddProduct}> Додати +</Button>
+                    <ButtonsGroup onChange={onFilterOptionChange} items={PRODUCT_FILTER_OPTIONS}/>
+                    <input type='text' placeholder='Пошук...'
+                           onChange={onFilterOptionChange} data-id='search-input'/>
+                </div>
                 <List
 
                     items={productsFilter()}
