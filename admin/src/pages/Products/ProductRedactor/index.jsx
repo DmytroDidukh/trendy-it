@@ -21,6 +21,7 @@ const ProductRedactor = ({redactorState}) => {
     useEffect(() => {
         if (product) {
             const {price, oldPrice, name, description, id, images, colors, sale, hot, available, newItem, toSlider} = product
+
             setId(id);
             setProductObj({price, oldPrice, name, description, available, sale, hot, newItem, toSlider});
             setImages(images.map(img => ({link: img.link})));
@@ -60,8 +61,7 @@ const ProductRedactor = ({redactorState}) => {
     }
 
     const onAddImageInput = () => {
-        const newArr = [...images]
-        newArr.push(IMAGE_DEFAULT);
+        const newArr = [...images, {...IMAGE_DEFAULT}]
         setImages(newArr);
     }
 
@@ -78,7 +78,7 @@ const ProductRedactor = ({redactorState}) => {
 
     const onResetInputs = () => {
         setId('');
-        setImages([IMAGE_DEFAULT])
+        setImages([{...IMAGE_DEFAULT}])
         setColors([COLOR_DEFAULT])
         setProductObj(PRODUCT_DEFAULT)
     }

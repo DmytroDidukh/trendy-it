@@ -12,71 +12,48 @@ client.query({
                 images {
                     link
                 }
+                colors {
+                    type
+                }
                 price
+                oldPrice
                 description
-                sizes {
-                    xs
-                    s
-                    m
-                    l
-                    xl
-                    xxl
-                    oneSize
-                }
-                rating {
-                    value
-                }
+                available
+                sale
+                newItem
+                toSlider
                 createdAt
-                subcategory {
-                    id
-                    name
-                }
-                category {
-                    id
-                    name
-                }
             }
         }
     `
 }));
 
 export const getProductById = async (id) => (
-    await client.query({
-        variables: {
-            id
-        },
-        query: gql`
-            query($id: ID!) {
-                getProductById(id: $id) {
-                    id
-                    name
-                    images {
-                        link
-                    }
-                    price
-                    description
-                    sizes {
-                        xs
-                        s
-                        m
-                        l
-                        xl
-                        xxl
-                    }
-                    rating {
-                        value
-                    }
-                    createdAt
-                    subcategory {
-                        id
-                        name
-                    }
-                    category {
-                        id
-                        name
-                    }
+await client.query({
+    variables: {
+        id
+    },
+    query: gql`
+        query($id: ID!) {
+            getProductById(id: $id) {
+                id
+                name
+                images {
+                    link
                 }
-            }      
-        `
+                colors {
+                    type
+                }
+                price
+                oldPrice
+                description
+                available
+                sale
+                newItem
+                toSlider
+                createdAt
+            }
+        }
+    `
 }))
 
