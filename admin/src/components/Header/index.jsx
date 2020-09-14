@@ -20,7 +20,7 @@ const Header = () => {
     return (
         <Navbar bg="dark" variant="dark">
             <Link to={isAuth ? '/' : '/login'}>
-                <Navbar.Brand>TrandyIT</Navbar.Brand>
+                <Navbar.Brand>TrendyIT</Navbar.Brand>
             </Link>
             {isAuth && <Nav className="mr-space nav-flex">
                 {

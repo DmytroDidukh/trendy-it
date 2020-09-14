@@ -100,7 +100,7 @@ const SettingsPage = () => {
 
     return (
         <div className='settings-page'>
-            <h2 className='settings-page__title'>Settings</h2>
+            <h2 className='settings-page__title'>Налаштування</h2>
             <Button variant="outline-dark" type="submit" data-name='name' onClick={onSelectField}>
                 Змінити ім‘я
             </Button>
