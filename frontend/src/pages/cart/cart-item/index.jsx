@@ -1,10 +1,11 @@
 import React, {useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {Link} from 'react-router-dom'
 import {Accordion, Icon} from 'semantic-ui-react'
 
 import {ModalBasic, NumberInput} from '../../../components'
 import {removeItemFromCart, setCartItemQuantity} from '../../../redux/cart/cart.actions'
+import {COLORS_DATA} from "../../../constants";
 import './style.scss'
 
 
@@ -54,7 +55,10 @@ const CartItem = ({item}) => {
 
                 <div className='cart-item__additions'>
                     <div>
-                        <div>Розмір:   {item.selectedColor}</div>
+                        <div className='cart-item__color-label'>Колір:
+                            <span style={{backgroundColor: COLORS_DATA[item.selectedColor].hex}}/>
+
+                        </div>
                         <NumberInput
                             quantity={item.quantity}
                             onChangeQuantity={onChangeQuantity}/>
