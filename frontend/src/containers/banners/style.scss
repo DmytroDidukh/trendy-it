@@ -3,6 +3,15 @@
   flex-direction: column;
   height: 100%;
 
+  @media screen and (max-width: 1200px) {
+    flex-direction: row;
+    height: 300px;
+  }
+
+  @media screen and (max-width: 500px) {
+    flex-direction: column;
+  }
+
   &__item {
     flex-basis: 100%;
     display: flex;
@@ -10,6 +19,15 @@
     align-items: flex-end;
     padding: 20px;
     margin: 5px 0;
+
+    @media screen and (max-width: 1200px) {
+      margin-bottom: 0;
+      margin-right: 5px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
   }
 
   &__item:last-child {
