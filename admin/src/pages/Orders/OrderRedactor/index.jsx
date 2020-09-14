@@ -134,8 +134,7 @@ const OrderRedactor = ({setRedactorState}) => {
                 <tr>
                     <th>#</th>
                     <th>Товар</th>
-                    <th>Категорія</th>
-                    <th>Розмір</th>
+                    <th>Колір</th>
                     <th>Кількість</th>
                     <th>Ціна за шт.</th>
                 </tr>
@@ -146,8 +145,7 @@ const OrderRedactor = ({setRedactorState}) => {
                         <tr key={i}>
                             <td>{i + 1}</td>
                             <td>{product.name}</td>
-                            <td>{product.category}, {product.subcategory}</td>
-                            <td>{product.size}</td>
+                            <td><span className={'order-color'} style={{backgroundColor: product.color}}/></td>
                             <td>{product.quantity}</td>
                             <td>{product.price}</td>
                         </tr>
