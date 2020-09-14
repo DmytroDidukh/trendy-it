@@ -24,5 +24,9 @@
     font-family: "MarcellusSC", sans-serif;
     font-size: 10em;
     color: #000000;
+
+    @media screen and (max-width: 500px){
+      font-size: 5em;
+    }
   }
 }
