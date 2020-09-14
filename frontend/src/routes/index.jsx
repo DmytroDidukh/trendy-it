@@ -25,7 +25,7 @@ const Routes = () => {
             <Route exact path='/payment-and-shipping' component={PaymentAndShipping}/>
             <Route exact path='/production' component={Production}/>
             <Route exact path='/catalog' component={ProductListPage}/>
-            <Route exact path='/:category/:subcategory/:id' render={({match}) => <ProductDetailPage productId={match.params.id}/>}/>
+            <Route exact path='/:catalog/:id' render={({match}) => <ProductDetailPage productId={match.params.id}/>}/>
         </Switch>
     )
 }

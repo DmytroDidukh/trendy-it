@@ -12,6 +12,13 @@
   -13px -13px 26px #ffffff;
   padding: 50px;
   min-height: calc(100vh - (60px + 89px + 200px));
+  position: relative;
+
+  &__labels {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+  }
 
   &__item {
     display: flex;
@@ -55,11 +62,11 @@
       pre {
         font-family: inherit;
         white-space: pre-line;
-        margin: 20px 0 50px;
+        margin: 20px 0 20px;
       }
 
       .to-order {
-        margin: 40px 0 5px;
+        margin: 20px 0 5px;
         display: flex;
         align-items: center;
         button {

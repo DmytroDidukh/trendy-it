@@ -3,11 +3,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {Link} from 'react-router-dom'
 import {Accordion, Icon} from 'semantic-ui-react'
 
-import {linkGenerator} from "../../../utils";
 import {ModalBasic, NumberInput} from '../../../components'
 import {removeItemFromCart, setCartItemQuantity} from '../../../redux/cart/cart.actions'
 import './style.scss'
-import {removeItemFromWishlist} from "../../../redux/wishlist/wishlist.actions";
 
 
 const CartItem = ({item}) => {
@@ -30,12 +28,12 @@ const CartItem = ({item}) => {
                 setAction={onModalAction}
                 item={item}/>
             <div className='cart-item__image'>
-                <Link to={linkGenerator(item)}>
-                    <img src={item.images[0].link} alt={item.name}/>
+                <Link to={`/catalog/${item.id}`}>
+                    <img src={item.images.product[0].link} alt={item.name}/>
                 </Link>
             </div>
             <div className='cart-item__details'>
-                <Link to={linkGenerator(item)}>
+                <Link to={`/catalog/${item.id}`}>
                     <h4>{item.name}</h4>
                 </Link>
                 <div className='cart-item__price'>{item.price} UAH</div>
@@ -56,7 +54,7 @@ const CartItem = ({item}) => {
 
                 <div className='cart-item__additions'>
                     <div>
-                        <div>Розмір:   {item.selectedSize}</div>
+                        <div>Розмір:   {item.selectedColor}</div>
                         <NumberInput
                             quantity={item.quantity}
                             onChangeQuantity={onChangeQuantity}/>

@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {useSelector} from "react-redux";
 
 import ProductCard from './product-card';
-import {Card} from 'semantic-ui-react';
+import {Card, Message} from 'semantic-ui-react';
 import {DropDown, Spinner, Pagination} from '../../components';
 import {productFilterObject, productSortObject} from '../../constants';
 
@@ -33,8 +33,12 @@ const ProductList = () => {
 
     const productsToShow = (length) => {
         const products = productsFilter().slice(length, length + 12)
-
-        return products.length ? products : <div>За вибраними критеріями нічого не знайдено</div>
+        return products.length ?
+            products : (
+                <Message className='empty-product-list'>
+                    <Message.Header>За вибраними критеріями нічого не знайдено</Message.Header>
+                </Message>
+            )
     }
 
     return (

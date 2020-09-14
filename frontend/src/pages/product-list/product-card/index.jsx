@@ -1,13 +1,14 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import {Card, Image, Label} from 'semantic-ui-react';
 import {Link} from 'react-router-dom'
 
+import {LABELS_DATA} from "../../../constants";
 import './style.scss';
 
 const ProductCard = ({product}) => {
 
 
-    const labelGenerator = (color, inner) => (
+    const labelGenerator = ({color, inner}) => (
         <Label color={color} ribbon>
             {inner}
         </Label>
@@ -18,9 +19,9 @@ const ProductCard = ({product}) => {
     return (
         <Link className="ui card product-card" to={`/catalog/${product.id}`}>
             <div className={'product-card__label-container'}>
-                {product.newItem && labelGenerator('green', 'НОВИНКА')}
-                {product.hot && labelGenerator('orange', 'ТОП ПРОДАЖ')}
-                {product.sale && labelGenerator('red', 'РОЗПРОДАЖ')}
+                {product.newItem && labelGenerator(LABELS_DATA.newItem)}
+                {product.hot && labelGenerator(LABELS_DATA.hot)}
+                {product.sale && labelGenerator(LABELS_DATA.sale)}
             </div>
             <Image src={product.images.product[0].link} wrapped ui={false}/>
             <Card.Content>
