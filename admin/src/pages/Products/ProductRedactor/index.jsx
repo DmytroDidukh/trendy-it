@@ -69,7 +69,6 @@ const ProductRedactor = ({redactorState}) => {
 
     const onSaveProduct = () => {
         if (productObj.name && productObj.price) {
-            console.log(images)
             dispatch(redactorState === 'add' ?
                 addProduct({...productObj, images, colors}) :
                 updateProduct({id, product: {...productObj, images, colors}}))

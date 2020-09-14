@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {Card, Image, Button, Label} from 'semantic-ui-react';
+import {Card, Image, Label} from 'semantic-ui-react';
 import {Link} from 'react-router-dom'
 
 import './style.scss';
@@ -15,16 +15,11 @@ const ProductCard = ({product}) => {
 
     const salePercentage = Math.round(((product.oldPrice-product.price)/product.oldPrice)*100)
 
-    if (product.name === 'Mattioli') {
-        console.log('hot',product.hot)
-        console.log('sale',product.sale)
-    }
-
     return (
         <Link className="ui card product-card" to={`/catalog/${product.id}`}>
             <div className={'product-card__label-container'}>
                 {product.newItem && labelGenerator('green', 'НОВИНКА')}
-                {product.hot && labelGenerator('orange', 'ХІТ ПРОДАЖ')}
+                {product.hot && labelGenerator('orange', 'ТОП ПРОДАЖ')}
                 {product.sale && labelGenerator('red', 'РОЗПРОДАЖ')}
             </div>
             <Image src={product.images.product[0].link} wrapped ui={false}/>

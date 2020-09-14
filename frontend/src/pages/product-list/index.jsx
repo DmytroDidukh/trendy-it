@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {useSelector} from "react-redux";
 
 import ProductCard from './product-card';
@@ -8,34 +8,33 @@ import {productFilterObject, productSortObject} from '../../constants';
 
 import './style.scss';
 
-const ProductList = ({location: {query}, match: {params}}) => {
+const ProductList = () => {
 
-    const {products, router} = useSelector(({Products, router}) => ({
-        products: Products.list,
-        router: router.location.pathname.slice(1),
-    }))
+    const products = useSelector(({Products}) => Products.list)
 
-    const [currentPage, setCurrentPage] = useState(1);
-
+    const [currentPage, setCurrentPage] = useState(0);
     const [productFilter, setProductFilter] = useState('all');
     const [productSort, setProductSort] = useState('new');
 
     const handleDropDown = (e, options) => {
         const id = e.target.closest('.dropdown').id;
-        id === 'Розміри' ? setProductFilter(options.value) : setProductSort(options.value);
+        id === 'Кольори' ? setProductFilter(options.value) : setProductSort(options.value);
     }
 
     const productsFilter = () => {
         return products
-            .filter(prod => productFilter === 'all' ? prod : prod.sizes[productFilter] > 0)
-            .sort((a, b) => productSort === 'new' && new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+            .filter(prod => productFilter === 'all' ? prod : prod.colors[productFilter])
+            .sort((a, b) => productSort === 'new' && b.newItem - a.newItem)
             .sort((a, b) => productSort === 'priceLow' && a.price - b.price)
             .sort((a, b) => productSort === 'priceHigh' && b.price - a.price)
+            .sort((a, b) => productSort === 'hot' && b.hot - a.hot)
             .map(product => <ProductCard key={product.id} product={product}/>)
     }
 
     const productsToShow = (length) => {
-        return productsFilter().slice(length === 1 ? 0 : length, length + 10)
+        const products = productsFilter().slice(length, length + 12)
+
+        return products.length ? products : <div>За вибраними критеріями нічого не знайдено</div>
     }
 
     return (
@@ -69,11 +68,11 @@ const ProductList = ({location: {query}, match: {params}}) => {
                         <Card.Group itemsPerRow={4}>
                             {productsToShow(currentPage)}
                         </Card.Group>
-                        <Pagination
+                        {productsToShow(currentPage).length && <Pagination
                             productsFilter={productsFilter}
                             productsToShow={productsToShow}
                             setCurrentPage={setCurrentPage}
-                        />
+                        />}
                     </div>
                 ) : (
                     <Spinner/>
