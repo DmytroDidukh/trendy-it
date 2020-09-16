@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Icon, Popup, Label} from 'semantic-ui-react'
+import {Icon, Popup, Label, Card} from 'semantic-ui-react'
 import {useDispatch, useSelector} from "react-redux";
 
 import {addItemToWishlist, removeItemFromWishlist} from "../../redux/wishlist/wishlist.actions";
@@ -64,6 +64,8 @@ const ProductDetailPage = ({productId}) => {
         </Label>
     )
 
+    const salePercentage = () => Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100)
+
     return (
         <div className='product-detail'>
             {
@@ -79,13 +81,17 @@ const ProductDetailPage = ({productId}) => {
                             <ImageViewer images={product.images.product}/>
                             <div className='product-detail__item__description'>
                                 <h1>{product.name}</h1>
-                                <div className={'price'}>{product.price} UAH</div>
+                                <div className="product-detail__item__price">
+                                    {product.sale && <strike>{product.oldPrice} </strike>}
+                                    <span> {product.price}</span> UAH
+                                    {product.sale && <Label color='red'>-{salePercentage()} %</Label>}
+                                </div>
                                 <pre dangerouslySetInnerHTML={{__html: product.description}}/>
                                 <Colors colors={product.colors}
-                                       selectedColor={selectedColor}
-                                       setSelectedColor={setSelectedColor}
-                                       isColorErrorVisible={isColorErrorVisible}
-                                       setIsColorErrorVisible={setIsColorErrorVisible}/>
+                                        selectedColor={selectedColor}
+                                        setSelectedColor={setSelectedColor}
+                                        isColorErrorVisible={isColorErrorVisible}
+                                        setIsColorErrorVisible={setIsColorErrorVisible}/>
                                 <div className='to-order'>
                                     <Popup
                                         trigger={<button disabled={!product.available}
