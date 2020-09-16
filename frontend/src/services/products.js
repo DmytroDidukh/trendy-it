@@ -16,7 +16,17 @@ client.query({
                     }
                 }
                 colors {
-                    type
+                    black
+                    silver
+                    white
+                    yellow
+                    orange
+                    red
+                    blue
+                    green
+                    brown
+                    purple
+                    pink
                 }
                 price
                 oldPrice
@@ -49,7 +59,17 @@ await client.query({
                     }
                 }
                 colors {
-                    type
+                    black
+                    silver
+                    white
+                    yellow
+                    orange
+                    red
+                    blue
+                    green
+                    brown
+                    purple
+                    pink
                 }
                 price
                 oldPrice

@@ -20,20 +20,23 @@ const Header = () => {
     return (
         <Navbar bg="dark" variant="dark">
             <Link to={isAuth ? '/' : '/login'}>
-                <Navbar.Brand>TrandyIT</Navbar.Brand>
+                <Navbar.Brand>TrendyIT</Navbar.Brand>
             </Link>
             {isAuth && <Nav className="mr-space nav-flex">
                 {
                     MENU_ITEMS.map((item, i) => (
-                        <Navbar.Text className='nav-item' key={item.link}>
+                        i !== 3 && <Navbar.Text className='nav-item' key={item.link}>
                             <Link className={`nav-link ${location === item.link && 'active'}`}
                                   to={`${item.link}`}>
-                                {i === 3 && userName ? userName : item.name}
+                                {item.name}
                             </Link>
                         </Navbar.Text>
                     ))
                 }
             </Nav>}
+            {userName && <span className={`nav-item navbar-text to-settings ${location === '/settings' && 'active'}`}>
+                <Link to={'/settings'}>{userName}</Link>
+            </span>}
             {isAuth && <span className='nav-item' onClick={onLogOut}>Вийти</span>}
         </Navbar>
     )

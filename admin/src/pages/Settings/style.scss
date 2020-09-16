@@ -9,6 +9,11 @@
   padding: 50px;
   text-align: center;
 
+  @media screen and (max-width: 600px) {
+    width: fit-content;
+    flex-direction: column;
+  }
+
   button {
     margin: 0 10px;
     .spinner {

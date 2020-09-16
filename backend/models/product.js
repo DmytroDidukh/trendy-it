@@ -9,7 +9,22 @@ const productSchema = new Schema({
         slider: String,
         product: [Object]
     },
-    colors: [Object],
+    colors: {
+        type: Object,
+        default: {
+            black: false,
+            silver: false,
+            white: false,
+            red: false,
+            yellow: false,
+            orange: false,
+            blue: false,
+            green: false,
+            purple: false,
+            pink: false,
+            brown: false,
+        }
+    },
     available: Boolean,
     hot: Boolean,
     sale: Boolean,
