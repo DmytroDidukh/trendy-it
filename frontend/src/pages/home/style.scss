@@ -5,6 +5,10 @@
     grid-template-columns: 1fr 450px;
     grid-gap: 10px;
 
+    @media screen and (max-width: 1200px) {
+      grid-template-columns: 1fr;
+    }
+
     .slider {
 
     }
@@ -13,6 +17,4 @@
 
     }
   }
-
-
 }

@@ -41,8 +41,18 @@ export const IMAGES_DEFAULT = {
     ]
 };
 
-export const COLOR_DEFAULT = {
-    type: ''
+export const COLORS_DEFAULT = {
+    black: false,
+    silver: false,
+    white: false,
+    red: false,
+    yellow: false,
+    orange: false,
+    blue: false,
+    green: false,
+    purple: false,
+    pink: false,
+    brown: false
 };
 
 export const COLORS_DATA = [
@@ -51,7 +61,7 @@ export const COLORS_DATA = [
     {hex: '#ffffff', name: 'Білий', type: 'white'},
     {hex: '#00308c', name: 'Синій', type: 'blue'},
     {hex: '#eeca07', name: 'Жовтий', type: 'yellow'},
-    {hex: '#ee4807', name: 'Оранджевий', type: 'orange'},
+    {hex: '#ee4807', name: 'Оранжевий', type: 'orange'},
     {hex: '#ff0000', name: 'Червоний', type: 'red'},
     {hex: '#2eae1c', name: 'Зелений', type: 'green'},
     {hex: '#e607ee', name: 'Рожейвий', type: 'pink'},

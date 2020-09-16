@@ -16,15 +16,14 @@ import 'semantic-ui-css/semantic.min.css'
 
 const App = () => {
     const dispatch = useDispatch();
-    const {productsLoading, bannersLoading, router} = useSelector(({Products, Banners, router}) => ({
+    const {productsLoading, bannersLoading} = useSelector(({Products, Banners}) => ({
         productsLoading: Products.loading,
         bannersLoading: Banners.loading,
-        router: router,
     }))
 
     const [loadingPageVisibility, setLoadingPageVisibility] = useState(true)
 
-    if (!localStorage.getItem('trandy')) {
+    if (!localStorage.getItem('trendyIT')) {
         clearLocalStorage();
     }
 

@@ -25,12 +25,10 @@ client.query({
                     }
                 }
                 products {                  
-                    name
-                    category
-                    subcategory
+                    name  
                     price
                     quantity
-                    size
+                    color
                 }
                 connectionMethod
                 orderId
