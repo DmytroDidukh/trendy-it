@@ -1,4 +1,4 @@
-# trendy-it
+# Trendy IT
 Womans bag shop
 
 ### The development was further divided:
